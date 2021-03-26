@@ -34,7 +34,9 @@ class NaiveMixtape(ChangeProcessingInterface):
         if playlist is not None:
             for key in payload:
                 if type(payload[key]) is list:
-                    playlist[key] = playlist[key] + payload[key]
+                    for song_id in payload[key]:
+                        if self.__song_exists(song_id):
+                            playlist[key].append(song_id)
                 else:
                     playlist[key] = payload[key]
 
@@ -47,6 +49,9 @@ class NaiveMixtape(ChangeProcessingInterface):
         # brute-force lookup
         return next((playlist for playlist in self.mixtape['playlists'] if playlist['id'] == playlist_id), None)
 
+    def __song_exists(self, song_id):
+        return song_id in (song['id'] for song in self.mixtape['songs'])
+
 
 class OptimizedMixtape(NaiveMixtape):
     # TODO: convert mixtape to full dictionary so that id lookups are constant time
@@ -57,15 +62,3 @@ class OptimizedMixtape(NaiveMixtape):
 
     def __init__(self, mixtape_data):
         super().__init__(mixtape_data)
-
-    def add(self, change):
-        # append change to a processing queue
-        pass
-
-    def remove(self, change):
-        # append change to a processing queue
-        pass
-
-    def modify(self, change):
-        # append change to a processing queue
-        pass
