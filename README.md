@@ -1,3 +1,21 @@
+## How to Run
+
+This code requires Python3.5 or later.  You can install via homebrew (Mac) or chocolatey (Windows) 
+
+or for Linux
+
+``apt get install python3`` 
+
+should install at least Python3.6
+
+If there are problems, a good resource is the python-guide: [https://docs.python-guide.org/starting/install3/linux/]
+
+``./apply.py --input mixtape.json --changes changes.json > output.json``
+
+or
+
+``python3 ./apply.py --input mixtape.json --changes changes.json > output.json``
+
 ## Scaling Discussion  
 Scaling this to handle large input or changes files presents a number of challenges:    
    
