@@ -34,8 +34,8 @@ Scaling this to handle large input or changes files presents a number of challen
     
  - SOLUTION: Convert json object to a dictionary of dictionaries, such that each playlist is stored with its "id" 
    property as its dictionary key.     
-        - ADVANTAGE:  Lookups are O(1) instead of O(n)    
-        - DISADVANTAGE: Only scales up to the amount of memory available.  Arbitrarily large input doesn't even fit in 
+   - ADVANTAGE:  Lookups are O(1) instead of O(n)    
+   - DISADVANTAGE: Only scales up to the amount of memory available.  Arbitrarily large input doesn't even fit in 
    memory, and this is only a small improvement since the lookup runs at memory speed.    
     
       
