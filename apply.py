@@ -8,7 +8,6 @@ from mixtapes import NaiveMixtape, OptimizedMixtape
 
 
 def get_args():
-    global args
     parser = argparse.ArgumentParser('Apply some changes')
     parser.add_argument('-i', '--input', dest='input_file', required=True, help='Input filename')
     parser.add_argument('-o', '--changes', dest='changes_file', required=True, help='Changes filename')

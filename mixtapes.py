@@ -30,8 +30,11 @@ class NaiveMixtape(ChangeProcessingInterface):
         return playlist
 
     def modify(self, payload):
+        # not thread safe
         playlist = self.__find_playlist_by_id(payload['id'])
         if playlist is not None:
+            # this could be expressed in a more "pythonic" way, but the comprehension/generator syntax
+            # can be tough to read, and this is pretty straightforward
             for key in payload:
                 if type(payload[key]) is list:
                     for song_id in payload[key]:
@@ -50,6 +53,7 @@ class NaiveMixtape(ChangeProcessingInterface):
         return next((playlist for playlist in self.mixtape['playlists'] if playlist['id'] == playlist_id), None)
 
     def __song_exists(self, song_id):
+        # brute-force lookup
         return song_id in (song['id'] for song in self.mixtape['songs'])
 
 
@@ -59,6 +63,7 @@ class OptimizedMixtape(NaiveMixtape):
     # TODO: create a background thread pool for the processing queues
     # TODO: Think about ACID properties, and whether we are OK with relaxing them for the sake of performance
     # TODO: Understand read vs. write frequency, because data stores can be optimized according to access patterns
+    # TODO: Change to ijson which allows chunked streaming of json
 
     def __init__(self, mixtape_data):
         super().__init__(mixtape_data)
