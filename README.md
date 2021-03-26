@@ -25,7 +25,9 @@ or
   
 ``python3 ./apply.py --input mixtape.json --changes changes.json > output.json``  
   
-## Scaling Discussion Scaling this to handle large input or changes files presents a number of challenges:      
+## Scaling Discussion 
+
+Scaling this to handle large input or changes files presents a number of challenges:      
      
 **PROBLEM**: The naive implementation uses brute-force linear searches to find playlists to change.      
       
