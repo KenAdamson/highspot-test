@@ -1,0 +1,28 @@
+[
+  {
+    "operation": "add",
+    "payload": {
+      "user_id": "3",
+      "song_ids":[
+        "3",
+        "6",
+        "15"
+      ]
+    }
+  },
+  {
+    "operation": "remove",
+    "payload": {
+      "id": "1"
+    }
+  },
+  {
+    "operation": "modify",
+    "payload": {
+      "id": "2",
+      "song_ids": [
+        "15"
+      ]
+    }
+  }
+]
